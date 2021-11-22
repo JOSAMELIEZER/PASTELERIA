@@ -1,0 +1,29 @@
+{% extends 'layouts/user.html' %}
+
+<!-- Inicio bloque body -->
+{% block body %}
+<!--{{user.name}}-->
+<div class="card" id="user">
+    <div class="card_body">
+        <h1>{{user.name}}</h1>
+    </div>
+</div>
+<div class="hola">
+    Hola como estas
+</div>
+
+{% endblock %}
+<!-- Fin bloque body -->
+
+{% block css%}
+<link rel="stylesheet" href="">
+{% endblock %}
+<!-- Fin bloque estilos -->
+
+{% block js%}
+
+<script>
+    alert("HOLA ESTE ES MI PAGINA WEB PYTON")
+</script>
+{% endblock %}
+<!-- Fin bloque scripts -->
