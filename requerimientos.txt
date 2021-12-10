@@ -1,4 +1,3 @@
-istalar antes de correr el programa:
 flask
 pymysql 
 flask-sqalchemy
