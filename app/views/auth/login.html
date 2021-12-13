@@ -1,0 +1,90 @@
+{% extends 'layouts/app.html' %}
+{% block body %}
+<!-- Inicio bloque body -->
+
+
+<div class="container-fluid vh-100" style="margin-top:100px">
+    <div class="" style="margin-top:100px">
+        <div class="rounded d-flex justify-content-center">
+            <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Hey!</strong> {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                {% endfor%}
+                {% endif %}
+                {% endwith%}
+                <div class="text-center">
+                    <h3 class="text-primary">Iniciar Sesión</h3>
+                </div>
+                <form action="{{url_for('auth_router.login')}}" method="POST" class="needs-validation" novalidate>
+                    <div class="p-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                    class="fa fa-user text-white"></i></span>
+                            <input type="text" name="Username" class="form-control" placeholder="Nombre de Usuario" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i class="fa fa-key text-white"></i></span>
+                            <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Recuerdame
+                            </label>
+                        </div>
+                        <button class="btn btn-primary text-center mt-2" type="submit">
+                            Iniciar Sesión
+                        </button>
+                        <p class="text-center mt-5">No tienes cuenta?
+                            <a href="{{url_for('auth_router.signup')}}"><span class="text-primary">Registrarme</span></a>
+                            
+                        </p>
+                        <p class="text-center text-primary">Olvidó su contraseña?</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+<!-- Fin bloque body -->
+
+{% block css%}
+
+{% endblock %}
+<!-- Fin bloque estilos -->
+
+{% block js%}
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict'
+  
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+  
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+  
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>
+{% endblock %}
+<!-- Fin bloque scripts -->
