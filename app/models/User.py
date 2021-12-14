@@ -1,8 +1,9 @@
 #from os import name
+from flask_login import UserMixin
 from app import db
 #from app.models.Pedido import Pedido
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__="users"
     id=db.Column(db.Integer, primary_key= True, autoincrement=True)
     name = db.Column(db.String(50))

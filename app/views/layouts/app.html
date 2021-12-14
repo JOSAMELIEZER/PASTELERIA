@@ -17,8 +17,6 @@
   <!-- Iconos de Font awesome -->
   {% block css%}
   <!-- Aqui va los bloques de estilos -->
-  
-
   {% endblock %}
 
 </head>
@@ -34,7 +32,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          
+          {% if current_user.is_authenticated %}
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
@@ -68,17 +66,18 @@
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
           </form>
-          <ul>
-            <li class="nav-item dropdown">
-              
-              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
-                <li><a class="dropdown-item" href="#">Mi perfil</a></li>
-                <li><a class="dropdown-item" href="#">Ajustes</a></li>
-              </ul>
-            </li>
-          </ul>
-          
+          <div class="btn-group">
+            <button type="button" class="btn dropdown-toggle text-light" data-bs-toggle="dropdown"
+                data-bs-display="static" aria-expanded="false">
+                {{ current_user.name}}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-menu-lg-end">
+                <li><a class="dropdown-item" href="{{url_for('auth_router.logout')}}">Cerrar sessión</a></li>
+                <li><a class="dropdown-item" href="/setting">Ajustes</a></li>
+                <li><a class="dropdown-item" href="/profile">Mi perfil</a></li>
+            </ul>
+          </div>
+          {% else %}
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             
             <li class="nav-item">
@@ -87,8 +86,8 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/signup">Registrarse</a>
             </li>
-
           </ul>
+          {% endif %}
         </div>
       </div>
     </nav>

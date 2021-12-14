@@ -1,0 +1,122 @@
+{% extends 'layouts/app.html' %}
+<!-- Inicio bloque body -->
+{% block body %}
+<!-- Inicio bloque body -->
+
+
+<div class="container-fluid vh-100" style="margin-top:100px">
+    <div class="" style="margin-top:100px">
+        <div class="rounded d-flex justify-content-center">
+            <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Hey!</strong> {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                {% endfor%}
+                {% endif %}
+                {% endwith%}
+                <div class="text-center">
+                    <h3 class="text-primary">Registrarse</h3>
+                </div>
+                <form action="{{url_for('auth_router.signup')}}" method="POST" class="needs-validation" novalidate>
+                    <div class="p-4">
+                        <div class="input-group mb-3">
+                            <input type="text" name="name" class="form-control" placeholder="Nombre" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" name="useranme" class="form-control" placeholder="Apellidos" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" name="direccion" class="form-control" placeholder="Direccion" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Email" required onkeyup="return forceLower(this)">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" id="confirm_password" class="form-control" placeholder="Confirmar Contraseña" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="number" name="phone" class="form-control" placeholder="Telefono" required>
+                        </div>
+                        
+                        <div><span id="message"></span></div>
+                        <button class="btn btn-primary text-center mt-2" type="submit">
+                            Registrar
+                        </button>
+                        <p class="text-center mt-5">Ya tengo cuenta?
+                            <a href="/login"><span class="text-primary">Iniciar Sesión</span></a>
+                            
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+<!-- Fin bloque body -->
+
+{% block css%}
+
+{% endblock %}
+<!-- Fin bloque estilos -->
+
+{% block js%}
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict'
+  
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+  
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+  
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>
+  <script>
+      function forceLower(strInput){
+        strInput.value = strInput.value.toLowerCase();
+      }
+      //validate input password
+      $('#password, #confirm_password').on('keyup', function() {
+        if ($('#password').val() == '') {
+            $('#message').html('Sin datos').css('color', 'white');
+            $('#confirm_password').css("border-color", "red");
+        } else if ($('#confirm_password').val() == $('input[name="password"]').val() && $('#confirm_password').val().length > 5) {
+            
+            var element = document.getElementById('confirm_password');
+            element.style.border = "";
+            var element = document.getElementById('confirm_password');
+            element.style.border = "2px solid green";
+
+            $('#message').html('Correcto').css('color', 'green');
+
+        } else {
+            $('#message').html('Las contraseñas no coinciden o es menor a 5 caracteres').css('color', 'red');
+            $('#confirm_password').css("border-color", "red");
+        }
+
+    });
+  </script>
+
+{% endblock %}

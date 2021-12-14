@@ -1,3 +1,4 @@
+from os import name
 from app.models.User import User
 from app import db, bycrypt, app
 from flask_login import LoginManager, login_manager, login_user, logout_user, current_user
@@ -17,12 +18,14 @@ class AuthController():
     def signup(self):
         if request.method == 'POST':
             name = request.form['name']
-            email = request.form['email']
-            username = request.form['username']
+            useranme = request.form['useranme']
+            direccion = request.form['direccion']
+            email = request.form['email']           
             password = bycrypt.generate_password_hash(request.form['password'])
-            picture_profile = 'user.png'
-
-            user = User(name=name, email=email, username=username, password=password, picture_profile=picture_profile)
+            phone = request.form['phone']
+            #picture_profile = 'user.png'
+            #user = User(name=name,username=username,direccion=direccion, email=email, password=password, picture_profile=picture_profile)
+            user = User(name=name,useranme=useranme,direccion=direccion, email=email, password=password, phone=phone,rol_user='cliente')
             db.session.add(user)
             db.session.commit()
             flash('Usuario registrado exitosamente')
@@ -31,8 +34,9 @@ class AuthController():
 
     def login(self):
         if request.method == 'POST':
-            user = User.query.filter_by(username=request.form['username']).first()
-            if user:
+            #user = User.query.filter_by(name=request.form['name']).first()
+            user = User.query.filter_by(name=request.form['name']).first()
+            if user: 
                 if bycrypt.check_password_hash(user.password, request.form['password']):
                     login_user(user)
                     return redirect(url_for('main_router.main'))
