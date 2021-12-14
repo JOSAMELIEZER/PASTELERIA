@@ -6,4 +6,4 @@ class Producto(db.Model):
     nom_prod = db.Column(db.String(50))
     costo = db.Column(db.Float(50))
     #relationship
-    pedido = db.relationship("pedido", back_populates="producto")
+    #pedido = db.relationship("pedido", back_populates="producto")
