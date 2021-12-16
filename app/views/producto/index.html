@@ -1,53 +1,67 @@
 {% extends 'layouts/app.html' %}
 
-<!-- Inicio bloque body -->
+<!-- Inicio bloque body {{producto.nom_prod}}-->
 {% block body %}
 
 <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Hey!</strong> {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-  
-        {% endfor%}
-        {% endif %}
-        {% endwith%}
-        <h1 class="fw-light">PRODUCTOS</h1>
-        <p class="lead text-muted">Inicio de Productos</p>
-        <p>
-          <a href="{{url_for('producto_route.create')}}" class="btn btn-primary my-2">NUEVO PRODUCTO</a>
-        </p>
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Hey!</strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
+
+      {% endfor%}
+      {% endif %}
+      {% endwith%}
+      <h1 class="fw-light">PRODUCTOS</h1>
+      <p class="lead text-muted">Inicio de Productos</p>
+      <p>
+        <a href="{{url_for('producto_route.create')}}" class="btn btn-primary my-2">NUEVO PRODUCTO</a>
+      </p>
     </div>
-  </section>
-  <section class="container">
-    <div class="row">
-      <div class="col-lg-12 mx-auto">
-        <div class="card">
+  </div>
+</section>
+
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      {% for data in producto %}  
+      <div class="col">
+        <div class="card shadow-sm">        
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
           <div class="card-body">
-            {% for data in categories %}
-            <div class="shadow p-3 mb-5 bg-body rounded">
-              {{data.category}}
-              <a href="{{url_for('category_router.delete', id = data.id)}}" class="btn btn-danger btn-sm "><i class="fa fa-trash"></i></a>
-              <a href="{{url_for('category_router.edit', id = data.id)}}" class="btn btn-dark btn-sm "><i class="fa fa-edit"></i></a>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="" class="btn btn-sm btn-outline-secondary">Añadir</a>
+                <a href="{{url_for('producto_route.edit', id = data.id)}}" class="btn btn-dark btn-sm "><i class="fa fa-edit"></i></a>
+                <a href="{{url_for('producto_route.delete', id = data.id)}}" class="btn btn-danger btn-sm "><i class="fa fa-trash"></i></a>
+                
+              </div>
+              <small class="text-muted">9 mins</small>
             </div>
-            {% endfor %}
           </div>
+          
         </div>
       </div>
+      {% endfor %}
     </div>
- </section>
+  </div>
+</div>
+
 
 {% endblock %}
 <!-- Fin bloque body -->
 
 {% block css%}
-<link rel="stylesheet" href="">
+
 {% endblock %}
 <!-- Fin bloque estilos -->
 

@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 import secrets
 
-UPLOAD_FOLDER = 'app/static/img/uploads/'
+UPLOAD_FOLDER = 'app/static/img/'
 #app = Flask('app')
 
 app = Flask(__name__, template_folder="views")

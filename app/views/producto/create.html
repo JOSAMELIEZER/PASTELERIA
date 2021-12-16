@@ -7,33 +7,41 @@
     <div class="col-lg-6 col-md-8 mx-auto">
       <div class="card">
         <div class="card-body">
-          <form action="{{url_for('producto_route.store')}}" method="POST" class="row g-3 needs-validation" novalidate>
+          <form class="form-horizontal" method="POST" action="{{url_for('producto_route.store')}}" enctype="multipart/form-data">
             <div class="col-md-12">
-                <div class="p-4">
-                    <div class="input-group mb-3">
-                        <input type="text" name="nom_prod" class="form-control" placeholder="Nombre del Producto" required>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="number" name="costo" class="form-control" placeholder="Costo del Producto" required>
-                    </div>
-              <div class="valid-feedback">
-                Los datos son requeridos.
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                <label class="form-check-label" for="invalidCheck">
-                  Acepto los términos y condiciones
-                </label>
-                <div class="invalid-feedback">
-                  Acepte antes de enviar.
+              <div class="p-4">
+                <div class="input-group mb-3">
+                  <input type="text" name="nom_prod" class="form-control" placeholder="Nombre del Producto" required>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="number" name="costo" class="form-control" placeholder="Costo del Producto" required>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" name="det_prod" class="form-control" placeholder="Detalle del Producto" required>
+                </div>
+                <div class="image">                 
+                  <img id="preview" class="producto-img img-fluid"
+                    src="https://previews.123rf.com/images/ylivdesign/ylivdesign1606/ylivdesign160601778/58068906-icono-de-pastel-en-estilo-de-dibujos-animados-aislado-sobre-fondo-blanco-s%C3%ADmbolo-de-comida.jpg?fj=1" alt="profile">
+                  <input type="file" name="file" id="file" accept="image/*" required />
+                </div>
+                <div class="valid-feedback">
+                  Los datos son requeridos.
                 </div>
               </div>
-            </div>
-            <div class="col-12">
-              <button class="btn btn-primary" type="submit">Crear</button>
-            </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                  <label class="form-check-label" for="invalidCheck">
+                    Acepto los términos y condiciones
+                  </label>
+                  <div class="invalid-feedback">
+                    Acepte antes de enviar.
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-primary" type="submit">Crear</button>
+              </div>
           </form>
         </div>
       </div>
@@ -71,6 +79,25 @@
         }, false)
       })
   })()
+  function init() {
+        var inputFile = document.getElementById('file');
+        inputFile.addEventListener('change', mostrarImagen, false);
+    }
+
+    function mostrarImagen(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var img = document.getElementById('preview');
+            img.src = event.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+
+    window.addEventListener('load', init, false);
+
+
+
 </script>
 {% endblock %}
 <!-- Fin bloque scripts -->
