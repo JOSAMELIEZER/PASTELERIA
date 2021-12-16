@@ -1,0 +1,54 @@
+{% extends 'layouts/app.html' %}
+
+<!-- Inicio bloque body {}-->
+{% block body %}
+
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Hey!</strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+      {% endfor%}
+      {% endif %}
+      {% endwith%}
+      <h1 class="fw-light">PEDIDO</h1>
+      <p class="lead text-muted">Carrito de Compras</p>
+      <p>
+        <a href="{{url_for('producto_route.create')}}" class="btn btn-primary my-2">REALIZAR PEDIDO</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+<!-- Fin bloque body -->
+
+{% block css%}
+
+{% endblock %}
+<!-- Fin bloque estilos -->
+
+{% block js%}
+<script>
+    //alert("HOLA ESTE SON PRODUCTOS")
+</script>
+{% endblock %}
+<!-- Fin bloque scripts -->

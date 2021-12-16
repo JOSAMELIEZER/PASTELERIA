@@ -29,3 +29,6 @@ from app.routes.main_router import main_router
 app.register_blueprint(main_router)
 from app.routes.producto_route import producto_route
 app.register_blueprint(producto_route)
+
+#from app.routes.pedido_router import pedido_router
+#app.register_blueprint(pedido_router)
