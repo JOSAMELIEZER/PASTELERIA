@@ -1,83 +1,98 @@
 {% extends 'layouts/app.html' %}
 
-<!-- Inicio bloque body {}-->
+<!-- Inicio bloque body -->
 {% block body %}
-
-<section class="py-5 text-center container">
-  <div class="row py-lg-5">
-    <div class="col-lg-6 col-md-8 mx-auto">
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Hey!</strong> {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-
-      {% endfor%}
-      {% endif %}
-      {% endwith%}
-      <h1 class="fw-light">PRODUCTOS</h1>
-      <p class="lead text-muted">Inicio de Productos</p>
-      <p>
-        <a href="{{url_for('producto_route.create')}}" class="btn btn-primary my-2">NUEVO PRODUCTO</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<div class="album py-5 bg-light">
-  <div class="container">
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      {% for data in producto %}
-      <div class="col">
-        <div class="card shadow-sm">
-          
-            <img class="bd-placeholder-img card-img-top"  src="{{ url_for('static', filename='img/' + data.picture_prod) }}" width="100%" height="225"
-              aria-label="Placeholde: {{data.nom_prod}}" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholde</title>
-              <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                dy=".3em"></text>
-                <h1>{{data.nom_prod}}</h1>
-            </img>
-            <h1></h1>
-            <div class="card-body">
-              <p class="card-text">{{data.det_prod}}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="" class="btn btn-sm btn-outline-secondary">Añadir</a>
-                  <a href="{{url_for('producto_route.edit', id = data.id)}}" class="btn btn-dark btn-sm "><i
-                      class="fa fa-edit"></i></a>
-                  <a href="{{url_for('producto_route.delete', id = data.id)}}" class="btn btn-danger btn-sm "><i
-                      class="fa fa-trash"></i></a>
-
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
+  <br>
+  <br><br>
+  <section class="container text-center">
+    <div class="content">
+      <div class="row"> 
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Hey!</strong> {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-          
-        </div>
+         
+            {% endfor%}
+            {% endif %}
+            {% endwith%}
+
+            <h1 style="color: beige;">PRODUCTOS</h1>
+            <br>
+            <br>
+            <p>
+              <a href="{{url_for('producto_route.create')}}" class="btn btn-light my-2">NUEVO PRODUCTO</a>
+            </p>
       </div>
-      {% endfor %}
-
-    </div>
-  </div>
-</div>
-
+      <br>
+      <div class="container bg-light" > 
+        <table id="mytable" class="display nowrap table-light" style="width:100%">
+          <thead>
+              <tr>
+                <th>Nombre Producto</th>
+                <th>Costo</th>
+               <!-- <th>Usuario</th>-->
+                <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for data in producto %}
+            <tr>
+               <!--<td>{{data.id}}</td>-->
+              <td>{{data.nom_prod}}</td>
+              <td>{{data.costo}}</td>
+              <!--<td>{{data.user_id}}</td>-->
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{url_for('producto_route.delete', id = data.id)}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{url_for('producto_route.edit', id = data.id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a></td>
+            </tr>
+            {% endfor %}  
+          </tbody>
+          <tfoot>
+              <tr>
+                <th>Nombre Producto</th>
+                <th>Costo</th>
+                <!--<th>Usuario</th>-->
+                <th>Acciones</th>
+              </tr>
+          </tfoot>
+      </table>
+      
+      
+      </div>
+ </section>
 
 {% endblock %}
 <!-- Fin bloque body -->
 
 {% block css%}
-
+<link rel="stylesheet" href="">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 {% endblock %}
 <!-- Fin bloque estilos -->
 
 {% block js%}
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
 <script>
     //alert("HOLA ESTE SON PRODUCTOS")
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    var table = $('#mytable').DataTable( {
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
+} );
 </script>
 {% endblock %}
 <!-- Fin bloque scripts -->
