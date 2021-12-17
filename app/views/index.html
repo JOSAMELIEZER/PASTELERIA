@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Carousel Template · Bootstrap v5.0</title>
+    <title>Pasteleria Pepita</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
 
@@ -20,21 +20,29 @@
 <!-- Inicio bloque body -->
 {% block body %}
 <!--{{user.name}}-->
-<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+<div class="container">
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
+    <main class="px-3 py-5 text-center" style="color: beige;">
+      <h1>Pasteleria Pepita</h1>
+      <p class="lead">Bienvenido, puedes iniciar sesion para poder realizar tu pedido</p>
+      <p class="lead">
+        <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-dark">Realizar un Pedido</a>
+      </p>
+    </main>
+    <hr>
+
     <div class="carousel-inner">
       <div class="carousel-item active">
         
         <img src="static/img/selva_negra_1200_600.jpg" alt=""  width="100%"  height="600px">
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>TORTAS</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">VER TORTAS</a></p>
+            <h1 style="color: black; -webkit-text-stroke: 1px rgb(245, 244, 244);">TORTAS</h1>
           </div>
         </div>
       </div>
@@ -43,9 +51,7 @@
 
         <div class="container">
           <div class="carousel-caption">
-            <h1>MASITAS</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">VER MASITAS</a></p>
+            <h1 style="color: black; -webkit-text-stroke: 1px rgb(245, 244, 244);">MASITAS</h1>
           </div>
         </div>
       </div>
@@ -56,29 +62,22 @@
 
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>PANES</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">VER PANES</a></p>
+            <h1 style="color: black; -webkit-text-stroke: 1px rgb(245, 244, 244);">PANES</h1>
           </div>
         </div>
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+      <span class="visually-hidden">Anterior</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+      <span class="visually-hidden">Siguiente</span>
     </button>
   </div>
+</div>
 
-
-
-
-<div class="hola">
-    PRINCIPAL
-</div>  
 
 {% endblock %}
 <!-- Fin bloque body -->
@@ -90,7 +89,7 @@
 
 {% block js%}
 <script>
-    alert("HOLA ESTE ES MI PAGINA WEB PYTON")
+    alert("*** BIENVENIDO A LA PASTELERIA PEPITA ***")
 </script>
 {% endblock %}
 <!-- Fin bloque scripts -->
