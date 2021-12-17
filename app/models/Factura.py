@@ -2,9 +2,9 @@ from app import db
 #from app.models.DetalleFactura import DetalleFactura
 #from app.models.pedido import Pedido
 
-DetallFact = db.Table('DetalleFactura', db.metadata,
-    db.Column('pedido_id', db.Integer, db.ForeignKey('pedido.id')),
-    db.Column('factura_id', db.Integer, db.ForeignKey('factura.id'))
+DetallFact = db.Table('detalle_factura', db.metadata,
+    db.Column('pedido_id', db.Integer, db.ForeignKey('pedidos.id')),
+    db.Column('factura_id', db.Integer, db.ForeignKey('facturas.id'))
   )
 
 #detfac = db.Table('detfac', db.metadata,
@@ -14,13 +14,9 @@ DetallFact = db.Table('DetalleFactura', db.metadata,
    # db.Column('prod_id',db.Integer, db.ForeignKey('producto.id')))
 
 class Factura(db.Model):
-    __tablename__="factura"
+    __tablename__="facturas"
     id=db.Column(db.Integer, primary_key= True, autoincrement=True)
     fecha = db.Column(db.Date)
-    Total = db.Column(db.Float)
+    total = db.Column(db.Float)
     
- 
-    pedido = db.relationship(
-        "pedido",
-        secondary=DetallFact,
-        back_populates="factura")
+    #pedido = db.relationship("pedidos",back_populates="facturas")

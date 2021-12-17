@@ -20,8 +20,8 @@ class ProductoController():
     def store(self):
         if request.method == 'POST':
             nom_prod = request.form['nom_prod']
-            costo = request.form['costo']
-            det_prod = request.form['det_prod']
+            precio = request.form['precio']
+            desc_prod = request.form['desc_prod']
             picture_prod = 'user.png'
             if 'file' not in request.files:
                 flash('No file part')
@@ -43,7 +43,7 @@ class ProductoController():
                 newfilename = fecha+'.png'
                 
                 
-                productoadd = Producto(nom_prod = nom_prod,costo=costo,det_prod=det_prod,picture_prod=newfilename)
+                productoadd = Producto(nom_prod = nom_prod,precio=precio,desc_prod=desc_prod,picture_prod=newfilename)
                 db.session.add(productoadd)
                 db.session.commit()
 
@@ -69,12 +69,12 @@ class ProductoController():
             productoV = request.form['nom_prod']
             productoDB = Producto.query.get(_id)
             productoDB.nom_prod = productoV
-            productoV1 = request.form['costo']
+            productoV1 = request.form['precio']
             productoDB = Producto.query.get(_id)
-            productoDB.costo = productoV1
-            productoV2 = request.form['det_prod']
+            productoDB.precio = productoV1
+            productoV2 = request.form['desc_prod']
             productoDB = Producto.query.get(_id)
-            productoDB.det_prod = productoV2
+            productoDB.desc_prod = productoV2
             if 'file' not in request.files:
                 flash('No file part')
                 return redirect(request.url)

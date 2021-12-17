@@ -13,7 +13,7 @@
               <label for="producto" class="form-label">Categoría</label>
               <input type="text" class="form-control" value="{{producto.nom_prod}}" name="nom_prod" required>
               <input type="text" class="form-control" value="{{producto.costo}}" name="costo" required>
-              <input type="text" class="form-control" value="{{producto.det_prod}}" name="det_prod" required>
+              <input type="text" class="form-control" value="{{producto.desc_prod}}" name="desc_prod" required>
               <div class="image">
                 <img id="preview" class="profile-user-img img-fluid"
                 src="{{ url_for('static', filename='img/' + producto.picture_prod) }}"

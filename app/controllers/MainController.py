@@ -1,4 +1,4 @@
-from app.models.User import User
+from app.models.Usuario import Usuario
 from app import db
 from flask import render_template
 class MainController():
@@ -7,7 +7,7 @@ class MainController():
 
     def index(self):
         # user = {'name': 'Josam Pinaya'}
-        user= User.query.get(1)
+        user= Usuario.query.get(1)
         return render_template('index.html', user=user)
         
         #users = User.query.all()

@@ -25,13 +25,10 @@
                 <form action="{{url_for('auth_router.signup')}}" method="POST" class="needs-validation" novalidate>
                     <div class="p-4">
                         <div class="input-group mb-3">
-                            <input type="text" name="name" class="form-control" placeholder="Nombre" required>
+                            <input type="text" name="nombre" class="form-control" placeholder="Nombres y Apellidos" required>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" name="useranme" class="form-control" placeholder="Apellidos" required>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" name="direccion" class="form-control" placeholder="Direccion" required>
+                            <input type="text" name="usuario" class="form-control" placeholder="usuario" required onkeyup="return forceLower(this)">
                         </div>
                         <div class="input-group mb-3">
                             <input type="email" name="email" class="form-control" placeholder="Email" required onkeyup="return forceLower(this)">
@@ -42,15 +39,11 @@
                         <div class="input-group mb-3">
                             <input type="password" id="confirm_password" class="form-control" placeholder="Confirmar Contraseña" required>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="number" name="phone" class="form-control" placeholder="Telefono" required>
-                        </div>
-                        
                         <div><span id="message"></span></div>
                         <button class="btn btn-primary text-center mt-2" type="submit">
                             Registrar
                         </button>
-                        <p class="text-center mt-5">Ya tengo cuenta?
+                        <p class="text-center mt-5">Ya tiene cuenta?
                             <a href="/login"><span class="text-primary">Iniciar Sesión</span></a>
                             
                         </p>

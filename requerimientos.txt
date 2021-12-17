@@ -1,6 +1,0 @@
-flask
-pymysql 
-flask-sqalchemy
-flask_login
-flask_bcrypt 
-pillow
