@@ -1,0 +1,52 @@
+{% extends 'layouts/app.html' %}
+
+<!-- Inicio bloque body {}-->
+{% block body %}
+
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      
+      <h1 class="fw-light">USUARIOS-</h1>
+      <p class="lead text-muted">Inicio de Usuarios</p>
+
+    </div>
+  </div>
+</section>
+
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row">
+                
+      {% for data in usuarios %}
+      <div class="col-sm-6">
+        <div class="card text-dark bg-light my-3">
+          <div class="card-body">
+            <h5 class="card-title">Nombre de Usuario: {{data.nombre}}</h5>
+            <p class="card-text">Email : {{data.email}}</p>
+            <p class="card-text">Rol de Usuario : {{data.rol_usuario}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+<!-- Fin bloque body -->
+
+{% block css%}
+
+{% endblock %}
+<!-- Fin bloque estilos -->
+
+{% block js%}
+<script>
+    //alert("HOLA ESTE SON PRODUCTOS")
+</script>
+{% endblock %}
+<!-- Fin bloque scripts -->
