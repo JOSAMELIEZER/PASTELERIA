@@ -1,0 +1,64 @@
+{% extends 'layouts/appclient.html' %}
+
+<!-- Inicio bloque body {}-->
+{% block body %}
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <!-- admin -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Hey!</strong> {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    {% endfor%}
+    {% endif %}
+    {% endwith%}
+    <!-- amdin -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+      {% for data in prod %}
+      <div class="col">
+        <div class="card shadow-sm">
+          
+          <img src="{{ url_for('static', filename='img/' + data.picture_prod) }}" alt="" width="100%" height="225">
+
+          <div class="card-body">
+            <h3>{{data.desc_prod}} <span class="text-primary">Bs. {{data.precio}}</span></h3>
+            <p class="card-text">{{data.nom_prod}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-secondary" title="Añadir al carrito"><i class="fa fa-shopping-cart"></i></button>
+                <button type="button" class="btn btn-sm btn-secondary" title="Añadir a favoritos"><i class="fa fa-star"></i></button>
+              </div>
+              <small class="text-muted">9 mins</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      {% endfor %}
+
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+<!-- Fin bloque body -->
+
+{% block css%}
+
+{% endblock %}
+<!-- Fin bloque estilos -->
+
+{% block js%}
+<script>
+    //alert("HOLA ESTE SON PRODUCTOS")
+</script>
+{% endblock %}
+<!-- Fin bloque scripts -->
