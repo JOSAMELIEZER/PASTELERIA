@@ -40,8 +40,11 @@ class AuthController():
             if user: 
                 if bycrypt.check_password_hash(user.clave, request.form['password']):
                     login_user(user)
-                    return redirect(url_for('main_router.main'))
-            
+                    if user.rol_usuario == 'cliente':
+                        return redirect(url_for('client_router.index'))
+                    else:
+                        return redirect(url_for('main_router.main'))
+                    
             flash('Usuario no existe, o los creadenciales no son válidos')
             return redirect(url_for('auth_router.login'))
         return render_template('auth/login.html')

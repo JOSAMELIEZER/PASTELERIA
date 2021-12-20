@@ -37,20 +37,12 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
             </li>
+            
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/producto">Pasteles</a>
+              <a class="nav-link" aria-current="page" href="/ordenes">Mis Ordenes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/masitas">Masitas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/panes">Panes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/pedido">Pedido</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/usuario">Usuarios</a>
+              <a class="nav-link" aria-current="page" href="/ordenes">Mis Favoritos</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
@@ -77,7 +69,7 @@
             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-menu-lg-end">
                 <li><a class="dropdown-item" href="{{url_for('auth_router.logout')}}">Cerrar sessión</a></li>
                 <li><a class="dropdown-item" href="/setting">Ajustes</a></li>
-                <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="/profile">Mi perfil</a></li>
             </ul>
           </div>
           {% else %}

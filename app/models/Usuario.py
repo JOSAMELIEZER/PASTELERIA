@@ -13,7 +13,7 @@ class Usuario(db.Model, UserMixin):
     clave = db.Column(db.String(200))
     telefono = db.Column(db.String(50))
     rol_usuario = db.Column(db.String(50))
-    foto_perfil = 'user.png'
+    foto_perfil=db.Column(db.String(150),nullable=True)
      #relationship
     #pedido = db.relationship("Pedido", back_populates="usuarios")
     
