@@ -1,0 +1,80 @@
+{% extends 'layouts/app.html' %}
+
+<!-- Inicio bloque body -->
+{% block body %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <hr class="featurette-divider">
+
+                    <div class="row featurette">
+                        <div class="col-md-7">
+                            <h2 class="featurette-heading">{{producto.nom_prod}} <span class="text-muted">{{producto.precio}} BS</span></h2>
+                            <p class="lead">{{producto.desc_prod}}</p>
+                        </div>
+                        <div class="col-md-5">
+                            <img class="bd-placeholder-img bd-placeholder-img-lg  " src="{{ url_for('static', filename='img/' + producto.picture_prod) }}"
+                                width="240" height="240" role="img"
+                                 preserveAspectRatio="xMidYMid slice"
+                                focusable="false">
+                        </div>
+                        <p class="lead">Tipo:  {{producto.tipo}}</p>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+<!-- Fin bloque body -->
+
+{% block css%}
+
+{% endblock %}
+<!-- Fin bloque estilos -->
+
+{% block js%}
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+    function init() {
+        var inputFile = document.getElementById('file');
+        inputFile.addEventListener('change', mostrarImagen, false);
+    }
+
+    function mostrarImagen(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var img = document.getElementById('preview');
+            img.src = event.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+
+    window.addEventListener('load', init, false);
+</script>
+{% endblock %}
+<!-- Fin bloque scripts -->

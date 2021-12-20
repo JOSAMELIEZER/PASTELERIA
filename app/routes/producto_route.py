@@ -26,3 +26,8 @@ def edit(id):
 @producto_route.route('/producto/<int:id>/update',methods=['POST'])
 def update(id):
     return productocontroller.update(id)
+
+@producto_route.route('/producto/<int:id>/show',methods=['GET'])
+def show(id):
+    return productocontroller.show(id)
+

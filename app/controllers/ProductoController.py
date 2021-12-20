@@ -22,7 +22,7 @@ class ProductoController():
             nom_prod = request.form['nom_prod']
             precio = request.form['precio']
             desc_prod = request.form['desc_prod']
-            picture_prod = 'user.png'
+            tipo = request.form['tipo']
             if 'file' not in request.files:
                 flash('No file part')
                 return redirect(request.url)
@@ -43,7 +43,7 @@ class ProductoController():
                 newfilename = fecha+'.png'
                 
                 
-                productoadd = Producto(nom_prod = nom_prod,precio=precio,desc_prod=desc_prod,picture_prod=newfilename)
+                productoadd = Producto(nom_prod = nom_prod,precio=precio,desc_prod=desc_prod,picture_prod=newfilename,tipo=tipo)
                 db.session.add(productoadd)
                 db.session.commit()
 
@@ -75,6 +75,9 @@ class ProductoController():
             productoV2 = request.form['desc_prod']
             productoDB = Producto.query.get(_id)
             productoDB.desc_prod = productoV2
+            productoV3 = request.form['tipo']
+            productoDB = Producto.query.get(_id)
+            productoDB.tipo = productoV3
             if 'file' not in request.files:
                 flash('No file part')
                 return redirect(request.url)
@@ -102,6 +105,8 @@ class ProductoController():
             else:
                 flash('Allowed image types are -> png, jpg, jpeg, gif')
                 return redirect(request.url)
-            
+    def show(self, _id):
+        producto = Producto.query.get(_id)
+        return render_template('producto/show.html',producto=producto)      
 
 productocontroller = ProductoController()
