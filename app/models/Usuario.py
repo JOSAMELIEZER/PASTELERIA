@@ -16,4 +16,8 @@ class Usuario(db.Model, UserMixin):
     foto_perfil=db.Column(db.String(150),nullable=True)
      #relationship
     #pedido = db.relationship("Pedido", back_populates="usuarios")
+    # Referencia de relacion con modelos externos
+    pedidos = db.relationship(
+        'Pedido', backref='usuario', lazy='dynamic')
+    
     
