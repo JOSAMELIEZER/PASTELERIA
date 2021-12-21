@@ -1,0 +1,66 @@
+{% extends 'layouts/app.html' %}
+
+<!-- Inicio bloque body {}-->
+{% block body %}
+
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Hey!</strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+      {% endfor%}
+      {% endif %}
+      {% endwith%}
+      <h1 class="fw-light">Sobre Nosotros</h1>
+    </div>
+  </div>
+</section>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="d-flex h-100 text-center text-white bg-dark">
+      <main class="px-3">
+        <h1>“La Pasteleria "Pepita" es la combinación perfecta para encontrar en el placer de la repostería y panadería
+          una deliciosa opción”</h1>
+        <p class="lead">Somos una repostería con más de 30 años en el mercado transformando los mejores ingredientes en
+          momentos especiales.
+        </p>
+        <p class="lead">
+          Creamos sabores auténticos plasmados en productos de repostería, galletería y panadería caracterizados por la
+          naturalidad y calidad pero sobre todo por nuestras técnicas que combinan lo artesanal con la tradición y la
+          innovación. La combinación perfecta para encontrar en el placer de la repostería y panadería una deliciosa
+          opción.</p>
+        <p class="lead">
+          Nuestra experiencia, el compromiso con la calidad y la atención de nuestro gran equipo humano nos han
+          permitido entregar la más acertada asesoría para las necesidades que surgen en cada uno de los servicios
+          brindados dentro de nuestro portafolio, convirtiéndolos así en momentos especiales.</p>
+        <p class="lead"> Actualmente contamos con una tienda ubicada en el mercado “Roberto Yung” (zona Sudoeste Oruro )
+          y una tienda virtual, caracterizados por ser
+          ambientes cálidos y acogedores llenos de sabor y tradición. Además de un completo servicio institucional con
+          el fin de satisfacer las necesidades y requerimientos corporativos.</p>
+      </main>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+<!-- Fin bloque body -->
+
+{% block css%}
+
+{% endblock %}
+<!-- Fin bloque estilos -->
+
+{% block js%}
+<script>
+    //alert("HOLA ESTE SON PRODUCTOS")
+</script>
+{% endblock %}
+<!-- Fin bloque scripts -->

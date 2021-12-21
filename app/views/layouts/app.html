@@ -43,14 +43,21 @@
                 Productos
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><a class="dropdown-item" href="/producto">TORTAS</a></li>
-                <li><a class="dropdown-item" href="/producto">MASITAS</a></li>
-                <li><a class="dropdown-item" href="/producto">PANES</a></li>
+                <li><a class="dropdown-item" href="{{url_for('producto_route.index',id='torta')}}" id="torta" value="torta">TORTAS</a></li>
+                <li><a class="dropdown-item" href="{{url_for('producto_route.index',id='torta')}}" id="torta" value='torta'>MASITAS</a></li>
+                <li><a class="dropdown-item" href="/producto" id="torta" alue='torta'>PANES</a></li>
+                <option value=""></option>
                 
               </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/pedido">Pedido</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/info">¿Quiénes somos?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/contacto">Contactanos</a>
             </li>
           </ul>
           <form class="d-flex">

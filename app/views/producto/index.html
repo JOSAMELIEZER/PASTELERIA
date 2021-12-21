@@ -18,7 +18,7 @@
       {% endif %}
       {% endwith%}
       <h1 class="fw-light">PRODUCTOS</h1>
-      <p class="lead text-muted">Inicio de Productos</p>
+      <p class="lead text-muted">Inicio de Productos{{id}}</p>
       <p>
         <a href="{{url_for('producto_route.create')}}" class="btn btn-primary my-2">NUEVO PRODUCTO</a>
       </p>
@@ -32,7 +32,7 @@
       
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       {% for data in producto  %}
-      {% if data.tipo == 'pan' %}
+      
       <div class="col">
         <div class="card shadow-sm">
           
@@ -62,7 +62,7 @@
           
         </div>
       </div>
-      {% endif %}
+     
       {% endfor %}
 
     </div>
