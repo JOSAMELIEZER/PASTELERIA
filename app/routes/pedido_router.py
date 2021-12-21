@@ -5,5 +5,5 @@ pedido_router = Blueprint('pedido_router', __name__)
 
 @pedido_router.route('/pedido',methods=['GET'])
 def index():
-    return pedidocontroller.index1()
+    return pedidocontroller.index()
 

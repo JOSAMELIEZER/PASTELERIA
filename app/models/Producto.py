@@ -8,4 +8,5 @@ class Producto(db.Model):
     desc_prod = db.Column(db.String(150))
     picture_prod=db.Column(db.String(150),nullable=True)
     #relationship
-    #pedido = db.relationship("pedido", back_populates="producto")
+    pedido = db.relationship(
+        'Pedido', backref='producto', lazy='dynamic')
