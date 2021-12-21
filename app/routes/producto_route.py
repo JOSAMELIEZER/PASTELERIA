@@ -31,3 +31,7 @@ def update(id):
 def show(id):
     return productocontroller.show(id)
 
+@producto_route.route('/producto/torta',methods=['GET'])
+def torta():
+    return productocontroller.torta()
+

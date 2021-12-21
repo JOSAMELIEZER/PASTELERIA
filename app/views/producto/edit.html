@@ -37,22 +37,11 @@
                 <img id="preview" class="profile-user-img img-fluid"
                 src="{{ url_for('static', filename='img/' + producto.picture_prod) }}"
                 alt="profile">
-                <input type="file" name="file" id="file" accept="image/*" required />
+                <input type="file" name="file" id="file" accept="image/*"/>
               </div>
               
               <div class="valid-feedback">
                 Los datos son requeridos.
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                <label class="form-check-label" for="invalidCheck">
-                  Acepto los términos y condiciones
-                </label>
-                <div class="invalid-feedback">
-                  Acepte antes de enviar.
-                </div>
               </div>
             </div>
             <div class="col-12">
