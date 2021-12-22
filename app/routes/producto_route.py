@@ -35,3 +35,9 @@ def show(id):
 def torta():
     return productocontroller.torta()
 
+@producto_route.route('/producto/masita',methods=['GET'])
+def masita():
+    return productocontroller.masita()
+@producto_route.route('/producto/pan',methods=['GET'])
+def pan():
+    return productocontroller.pan()

@@ -1,0 +1,86 @@
+{% extends 'layouts/app.html' %}
+
+<!-- Inicio bloque body {}-->
+{% block body %}
+
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Hey!</strong> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            {% endfor%}
+            {% endif %}
+            {% endwith%}
+            <h1 class="fw-light">PANES</h1>
+            <p class="lead text-muted">Catalogo de Panes</p>
+            <p>
+                <a href="{{url_for('producto_route.create')}}" class="btn btn-primary my-2">NUEVO PRODUCTO</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for data in producto %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img class="bd-placeholder-img card-img-top"
+                        src="{{ url_for('static', filename='img/' + data.picture_prod) }}" width="100%" height="225"
+                        aria-label="Placeholde: {{data.nom_prod}}" preserveAspectRatio="xMidYMid slice"
+                        focusable="false">
+                    <title>Placeholde</title>
+                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                        dy=".3em"></text>
+                    <h1>{{data.nom_prod}}</h1>
+                    </img>
+                    <h1></h1>
+                    <div class="card-body">
+                        <p class="card-text">{{data.desc_prod}}</p>
+                        <strong><span>{{data.precio}}</span> BS</strong>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{url_for('producto_route.show', id = data.id)}}"
+                                    class="btn btn-sm btn-outline-secondary">Ver</a>
+                                <a href="{{url_for('producto_route.edit', id = data.id)}}"
+                                    class="btn btn-dark btn-sm "><i class="fa fa-edit"></i></a>
+                                <a href="{{url_for('producto_route.delete', id = data.id)}}"
+                                    class="btn btn-danger btn-sm "><i class="fa fa-trash"></i></a>
+
+                            </div>
+                            <small class="text-muted">10 mins</small>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+<!-- Fin bloque body -->
+
+{% block css%}
+
+{% endblock %}
+<!-- Fin bloque estilos -->
+
+{% block js%}
+<script>
+    //alert("HOLA ESTE SON PRODUCTOS")
+</script>
+{% endblock %}
+<!-- Fin bloque scripts -->

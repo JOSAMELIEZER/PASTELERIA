@@ -114,5 +114,11 @@ class ProductoController():
     def torta(self):
         producto = Producto.query.filter_by(tipo = 'torta').all()
         return render_template('producto/tortas.html',producto=producto)    
-
+    def masita(self):
+        producto = Producto.query.filter_by(tipo = 'masita').all()
+        return render_template('producto/masitas.html',producto=producto) 
+    def pan(self):
+        producto = Producto.query.filter_by(tipo = 'pan').all()
+        return render_template('producto/panes.html',producto=producto)   
+        
 productocontroller = ProductoController()
