@@ -7,46 +7,78 @@
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       
-      <h1 class="fw-light">USUARIOS-</h1>
+      <h1 class="fw-light">USUARIOS</h1>
       <p class="lead text-muted">Inicio de Usuarios</p>
 
     </div>
   </div>
 </section>
 
+<section class="container my-5">
+  <div class="content">
 
-<div class="album py-5 bg-light">
-  <div class="container">
-
-    <div class="row">
-                
-      {% for data in usuarios %}
-      <div class="col-sm-6">
-        <div class="card text-dark bg-light my-3">
-          <div class="card-body">
-            <h5 class="card-title">Nombre de Usuario: {{data.nombre}}</h5>
-            <p class="card-text">Email : {{data.email}}</p>
-            <p class="card-text">Rol de Usuario : {{data.rol_usuario}}</p>
-          </div>
+        <div class="container bg-light" > 
+          <table id="mytable" class="display nowrap table-light" style="width:100%">
+            <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for data in usuarios %}
+              <tr>
+                <td>{{data.nombre}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.rol_usuario}}</td>
+              </tr>
+              {% endfor %} 
+            </tbody>
+            <tfoot>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                </tr>
+            </tfoot>
+        </table>
+        
+        
         </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</div>
+        </div>
+  
 
+</section>
 
 {% endblock %}
 <!-- Fin bloque body -->
 
 {% block css%}
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 {% endblock %}
 <!-- Fin bloque estilos -->
 
 {% block js%}
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
+
 <script>
     //alert("HOLA ESTE SON PRODUCTOS")
+$(document).ready(function() {
+    var table = $('#mytable').DataTable( {
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
+} );
+
+
 </script>
 {% endblock %}
 <!-- Fin bloque scripts -->
