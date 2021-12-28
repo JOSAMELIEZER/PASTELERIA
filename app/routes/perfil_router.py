@@ -4,17 +4,18 @@ from flask_login import login_required
 
 perfil_router = Blueprint('perfil_router', __name__)
 
-@login_required
 @perfil_router.route('/perfil',methods=['GET'])
+@login_required
 def index():
     return perfilcontroller.index()
 
 @perfil_router.route('/perfil/<int:id>/edit',methods=['GET'])
+@login_required
 def edit(id):
     return perfilcontroller.edit(id)
 
-@login_required
 @perfil_router.route('/perfil/<int:id>/updateprofile',methods=['POST'])
+@login_required
 def updateprofile(id):
     return perfilcontroller.updateprofile(id)
 

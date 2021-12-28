@@ -8,6 +8,13 @@ class Pedido(db.Model):
     __tablename__="pedidos"
     id=db.Column(db.Integer, primary_key= True, autoincrement=True)
     cantidad = db.Column(db.Integer)
+    #ESTADOS
+    #Nada -> 0
+    #Favoritos -> 1
+    #Carrito -> 2
+    #Pendiente -> 3
+    #Entregado -> 4
+    estado = db.Column(db.Integer, default=0)
     #relationship
     user_id = db.Column(db.Integer, db.ForeignKey('usuarios.id')) 
     #user = db.relationship("Usuario", back_populates="pedidos")
