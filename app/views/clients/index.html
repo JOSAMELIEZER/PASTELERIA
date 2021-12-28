@@ -23,7 +23,7 @@
       {% for data in prod %}
       <div class="col">
         <div class="card shadow-sm">
-          
+
           <img src="{{ url_for('static', filename='img/' + data.picture_prod) }}" alt="" width="100%" height="225">
 
           <div class="card-body">
@@ -31,8 +31,10 @@
             <p class="card-text">{{data.nom_prod}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-secondary" title="Añadir al carrito"><i class="fa fa-shopping-cart"></i></button>
-                <button type="button" class="btn btn-sm btn-secondary" title="Añadir a favoritos"><i class="fa fa-star"></i></button>
+                <button onclick="btnAgregarCarrito('{{data.id}}')" type="button" class="btn btn-sm btn-secondary"
+                  title="Añadir al carrito"><i class="fa fa-shopping-cart"></i></button>
+                <button type="button" class="btn btn-sm btn-secondary" title="Añadir a favoritos"><i
+                    class="fa fa-star"></i></button>
               </div>
               <small class="text-muted">9 mins</small>
             </div>
@@ -58,7 +60,30 @@
 
 {% block js%}
 <script>
-    //alert("HOLA ESTE SON PRODUCTOS")
+  function btnAgregarCarrito(id){
+      $.ajax({
+        url: "/client/carrito",
+        type: 'POST',
+        data: {
+          //'_token': $('meta[name="csrf-token"]').attr('content'),
+          'id': id,
+        },
+        success: function (data) {
+          /* var json = $.parseJSON(
+              data); */ // create an object with the key of the array
+          console.log('Todo salió bien');
+          //window.location.reload(true);
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          alert('error');
+        }
+      });
+    };
+  $(document).ready(function () {
+    
+
+  });
 </script>
 {% endblock %}
 <!-- Fin bloque scripts -->
