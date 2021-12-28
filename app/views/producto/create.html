@@ -7,21 +7,42 @@
     <div class="col-lg-6 col-md-8 mx-auto">
       <div class="card">
         <div class="card-body">
-          <form class="form-horizontal" method="POST" action="{{url_for('producto_route.store')}}" enctype="multipart/form-data">
+          <form class="form-horizontal" method="POST" action="{{url_for('producto_route.store')}}"
+            enctype="multipart/form-data">
             <div class="col-md-12">
               <div class="p-4">
                 <div class="input-group mb-3">
                   <input type="text" name="nom_prod" class="form-control" placeholder="Nombre del Producto" required>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="number" name="precio" class="form-control" placeholder="precio del Producto" required>
+                  <input type="number" required name="precio" min="0" step=".01" class="form-control"
+                    placeholder="precio del Producto" required>
                 </div>
                 <div class="input-group mb-3">
                   <input type="text" name="desc_prod" class="form-control" placeholder="Detalle del Producto" required>
                 </div>
-                <div class="image">                 
+                <div class="input-group mb-3">
+                  Tipo
+                </div>
+                <div class="input-group mb-3">
+                  <input type="radio" id="torta" name="tipo" value="torta"
+                         checked>
+                  <label for="torta">Torta</label>
+                </div>   
+                <div class="input-group mb-3">
+                  <input type="radio" id="masita" name="tipo" value="masita">
+                  <label for="masita">Masita</label>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="radio" id="pan" name="tipo" value="pan">
+                  <label for="pan">Pan</label>
+                </div>
+                
+
+                <div class="image">
                   <img id="preview" class="producto-img img-fluid"
-                    src="https://previews.123rf.com/images/ylivdesign/ylivdesign1606/ylivdesign160601778/58068906-icono-de-pastel-en-estilo-de-dibujos-animados-aislado-sobre-fondo-blanco-s%C3%ADmbolo-de-comida.jpg?fj=1" alt="profile">
+                    src="https://previews.123rf.com/images/ylivdesign/ylivdesign1606/ylivdesign160601778/58068906-icono-de-pastel-en-estilo-de-dibujos-animados-aislado-sobre-fondo-blanco-s%C3%ADmbolo-de-comida.jpg?fj=1"
+                    alt="profile">
                   <input type="file" name="file" id="file" accept="image/*" required />
                 </div>
                 <div class="valid-feedback">
@@ -80,21 +101,21 @@
       })
   })()
   function init() {
-        var inputFile = document.getElementById('file');
-        inputFile.addEventListener('change', mostrarImagen, false);
-    }
+    var inputFile = document.getElementById('file');
+    inputFile.addEventListener('change', mostrarImagen, false);
+  }
 
-    function mostrarImagen(event) {
-        var file = event.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function (event) {
-            var img = document.getElementById('preview');
-            img.src = event.target.result;
-        }
-        reader.readAsDataURL(file);
+  function mostrarImagen(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function (event) {
+      var img = document.getElementById('preview');
+      img.src = event.target.result;
     }
+    reader.readAsDataURL(file);
+  }
 
-    window.addEventListener('load', init, false);
+  window.addEventListener('load', init, false);
 
 
 

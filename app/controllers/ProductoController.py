@@ -22,7 +22,7 @@ class ProductoController():
             nom_prod = request.form['nom_prod']
             precio = request.form['precio']
             desc_prod = request.form['desc_prod']
-            picture_prod = 'user.png'
+            tipo = request.form['tipo']
             if 'file' not in request.files:
                 flash('No file part')
                 return redirect(request.url)
@@ -43,7 +43,7 @@ class ProductoController():
                 newfilename = fecha+'.png'
                 
                 
-                productoadd = Producto(nom_prod = nom_prod,precio=precio,desc_prod=desc_prod,picture_prod=newfilename)
+                productoadd = Producto(nom_prod = nom_prod,precio=precio,desc_prod=desc_prod,picture_prod=newfilename,tipo=tipo)
                 db.session.add(productoadd)
                 db.session.commit()
 
@@ -66,22 +66,27 @@ class ProductoController():
         return render_template('producto/edit.html',producto=producto)
     def update(self, _id):
         if request.method == 'POST':
-            productoV = request.form['nom_prod']
-            productoDB = Producto.query.get(_id)
-            productoDB.nom_prod = productoV
-            productoV1 = request.form['precio']
-            productoDB = Producto.query.get(_id)
-            productoDB.precio = productoV1
-            productoV2 = request.form['desc_prod']
-            productoDB = Producto.query.get(_id)
-            productoDB.desc_prod = productoV2
+            v_nom_prod = request.form['nom_prod']
+            v_precio = request.form['precio']
+            v_desc_prod = request.form['desc_prod']
+            v_tipo = request.form['tipo']
+
+            producto =  Producto.query.get(_id) 
+            producto.nom_prod = v_nom_prod
+            producto.precio = v_precio
+            producto.desc_prod = v_desc_prod
+            producto.tipo = v_tipo
+
             if 'file' not in request.files:
                 flash('No file part')
                 return redirect(request.url)
             file = request.files['file']
             if file.filename == '':
-                flash('No image selected for uploading')
-                return redirect(request.url)
+                #flash('No image selected for uploading')
+                
+                db.session.commit()
+                flash('El producto se ha actualizado con éxito.')
+                return redirect(url_for('producto_route.index'))
             if file: #and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 #guardar nombre
@@ -102,6 +107,12 @@ class ProductoController():
             else:
                 flash('Allowed image types are -> png, jpg, jpeg, gif')
                 return redirect(request.url)
-            
+    def show(self, _id):
+        producto = Producto.query.get(_id)
+        return render_template('producto/show.html',producto=producto)  
+
+    def torta(self):
+        producto = Producto.query.filter_by(tipo = 'torta').all()
+        return render_template('producto/tortas.html',producto=producto)    
 
 productocontroller = ProductoController()
