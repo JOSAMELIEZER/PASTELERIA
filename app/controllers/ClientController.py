@@ -14,6 +14,7 @@ class ClientController():
         prod= Producto.query.all()
         return render_template('clients/index.html', prod=prod)
     def carrito(self):
+        user_id = current_user.id
         if request.method == 'POST':
             #si existe producto y usuario entonces: actualiar 
             # sino crear 
@@ -32,11 +33,20 @@ class ClientController():
             cantidad = 0
             estado = 2
             prod_id = id
-            user_id = current_user.id
+            
             est_pedido = Pedido(cantidad=cantidad, estado=estado, prod_id=prod_id, user_id=user_id)
             db.session.add(est_pedido)
             db.session.commit()
             return jsonify(results=user_id)
+
+        carrito = Pedido.query\
+            .join(Producto, Producto.id==Pedido.prod_id)\
+            .join(Usuario, Pedido.user_id==Usuario.id)\
+            .filter(Pedido.estado == 2)\
+            .filter(Usuario.id == user_id)\
+            .all()
+            #.add_columns(Pedido.prod_id)\
+        return render_template('clients/micarrito.html', carrito=carrito)
             
         
 clientcontroller = ClientController()
