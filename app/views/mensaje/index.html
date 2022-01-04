@@ -1,0 +1,60 @@
+{% extends 'layouts/app.html' %}
+
+<!-- Inicio bloque body {}-->
+{% block body %}
+
+<section class="py-2 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+
+            <h1 class="fw-light">MENSAJES</h1>
+            <p class="lead text-muted">Mensajes de clientes</p>
+
+        </div>
+    </div>
+</section>
+
+<section class="container my-4">
+    <div class="content">
+        {% for data in mensajes %}
+        <div class="col-md-12 my-3" ">
+        
+        <div class=" card text-white bg-dark mb-3 border-light border-1">
+            <div class="card-body">
+                <h4 class="card-title">Asunto:{{ data.asunto}}</h4>
+                <hr style="color: white;">
+                <h6>Lo envio: {{ data.nombre}}</h6>
+                <h6>Correo electronico: {{ data.correo}}</h6>
+                <h6>Mensaje: {{ data.mensaje}}</h6>
+            </div>
+            <div class="card-footer text-end ">
+                <div class="btn-group">
+                    <a href="{{url_for('mensaje_router.delete', id = data.id)}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>&nbsp;&nbsp;Borrar </a>
+                </div>
+            </div>
+        </div>
+   </div>
+   {% endfor %} 
+        
+
+
+</section>
+
+{% endblock %}
+<!-- Fin bloque body -->
+
+{% block css%}
+
+{% endblock %}
+<!-- Fin bloque estilos -->
+
+{% block js%}
+
+
+<script>
+
+
+
+</script>
+{% endblock %}
+<!-- Fin bloque scripts -->

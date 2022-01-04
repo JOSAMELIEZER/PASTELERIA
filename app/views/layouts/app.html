@@ -14,6 +14,11 @@
   <!-- Estilos propios -->
   <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 
+
+    <!--inicio con las estadisticas-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="custom.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,400,500,600" rel="stylesheet" type="text/css">
   <!-- Iconos de Font awesome -->
   {% block css%}
   <!-- Aqui va los bloques de estilos -->
@@ -26,7 +31,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <!-- fixed-top  -->
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">PASTELERÍA PEPITA</a>
+        <a class="navbar-brand" href="/"><img src="../../static/img/pasteleria pepita-PhotoRoom.png" alt="" style="max-height: 35px;"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
           aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -34,9 +39,9 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           {% if current_user.is_authenticated %}
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Inicio</a>
-            </li>
+            <!--<li class="nav-item">
+              <a class="nav-link " aria-current="page" href="/">Estadisticas</a>
+            </li>-->
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/usuario">Usuarios</a>
             </li>
@@ -57,13 +62,15 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/pedido">Pedido</a>
             </li>
-            
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/mensaje">Mensajes</a>
+            </li>
           </ul>
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
           </form>
-          <div class="btn-group">
+          <div class="btn-group px-3">
             <button type="button" class="btn dropdown-toggle text-light" data-bs-toggle="dropdown"
                 data-bs-display="static" aria-expanded="false">
                 {{ current_user.nombre}}
@@ -74,6 +81,8 @@
                 <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
             </ul>
           </div>
+
+          
           {% else %}
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             
@@ -103,9 +112,41 @@
     <!-- Aqui ira los bloques  -->
     
     {% endblock %}
-    <footer class="container">
-      <p class="float-end"><a href="#">Back to top</a></p>
-      <p>&copy; 2000-2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <footer class="bg-dark text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a class="btn btn-outline-light btn-floating m-1" href="https://facebook.com/" role="button"
+            ><i class="fa fa-facebook-f"></i
+          ></a>
+    
+          <!-- Twitter -->
+          <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/" role="button"
+            ><i class="fa fa-twitter"></i
+          ></a>
+
+          <!-- Instagram -->
+          <a class="btn btn-outline-light btn-floating m-1" href="https://instagram.com/" role="button"
+            ><i class="fa fa-instagram"></i
+          ></a>
+
+          <!-- Whatsapp -->
+          <a class="btn btn-outline-light btn-floating m-1" href="https://whatsapp.com/" role="button"
+            ><i class="fa fa-whatsapp"></i
+          ></a>
+
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2021 Taller de Desarrollo de SW 2: Pasteleria Pepita
+      </div>
+      <!-- Copyright -->
     </footer>
   </main>
 

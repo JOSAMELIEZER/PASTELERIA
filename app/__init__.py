@@ -31,6 +31,8 @@ from app.routes.producto_route import producto_route
 app.register_blueprint(producto_route)
 from app.routes.usuario_route import usuario_route
 app.register_blueprint(usuario_route)
+from app.routes.mensaje_router import mensaje_router
+app.register_blueprint(mensaje_router)
 
 from app.routes.perfil_router import perfil_router
 app.register_blueprint(perfil_router)
