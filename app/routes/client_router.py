@@ -9,7 +9,7 @@ client_router = Blueprint('client_router', __name__)
 def index():
     return clientcontroller.index()
 
-@client_router.route('/client/carrito',methods=['POST'])
+@client_router.route('/client/micarrito',methods=['GET','POST'])
 @login_required
 def carrito():
     return clientcontroller.carrito()
