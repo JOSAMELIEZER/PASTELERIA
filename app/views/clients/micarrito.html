@@ -50,10 +50,9 @@
               {% endif %}
             </th>
             <td>
-              <a href="/materias/editar/{{row.id}}" class="btn btn-success btn-sm">Aceptar</a>
-              <a href="/materias/eliminarmateria/{{row.id}}" onclick="
-                            return confirm('¿Seguro que quiere eliminar este registro?')"
-                class="btn btn-danger btn-delete btn-sm">Rechazar</a>
+              <a href="javascript:void(0)" onclick="agregarCantidad('{{ row.id }}')" class="btn btn-primary btn-sm">Cantidad</a>
+              <a href="/materias/eliminarmateria/{{row.id}}"
+                class="btn btn-danger btn-delete btn-sm">Quitar</a>
             </td>
           </tr>
           {% endfor%}
@@ -63,7 +62,31 @@
     </div>
   </div>
 </div>
-
+<!-- modal -->
+<div class="modal fade" id="cantidadModal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cantidad</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="form-row">
+            <h1 class="col-sm-3 col-form-label">Cantidad</h1>
+            <input class="form-control col-sm-9" min="1" id="cantidad" type="number">
+          </div>
+        </div>
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
 <!-- Fin bloque body -->
@@ -113,7 +136,20 @@
         }
       },
     });
+    
   });
+
+  function agregarCantidad(id){
+    //alert(id);
+
+    $('#cantidadModal').modal('show');
+
+  }
+  /* $('#cantidadModal').modal({
+        backdrop: 'static',
+        keyboard: true,
+        show: true
+    }); */
 </script>
 {% endblock %}
 <!-- Fin bloque scripts -->

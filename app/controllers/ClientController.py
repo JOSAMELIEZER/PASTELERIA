@@ -30,7 +30,7 @@ class ClientController():
                 return jsonify(results=pedido)
 
             #Agregar pedido
-            cantidad = 0
+            cantidad = 1
             estado = 2
             prod_id = id
             
