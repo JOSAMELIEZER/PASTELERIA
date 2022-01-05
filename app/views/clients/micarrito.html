@@ -3,7 +3,7 @@
 <!-- Inicio bloque body {}-->
 {% block body %}
 
-<div class="album py-5 bg-light">
+<div class="album py-5">
   <div class="container">
     <!-- admin -->
     {% with messages = get_flashed_messages() %}
@@ -42,23 +42,25 @@
               {% if row.estado == 1 %}
                 <span class="badge badge-success"> FAVORITO </span>
               {% elif row.estado == 2 %}
-                <span class=""> CARRITO </span>
+                <span class="badge badge-success text-success"> CARRITO </span>
               {% elif row.estado == 3 %}
-                <span class="badge badge-success"> PENDIENTE </span>
+                <span class="badge badge-success text-dark"> PENDIENTE </span>
               {% else %}
                 <span class="badge badge-success"> ENTREGADO </span>
               {% endif %}
             </th>
             <td>
               <a href="javascript:void(0)" onclick="agregarCantidad('{{ row.id }}')" class="btn btn-primary btn-sm">Cantidad</a>
-              <a href="/materias/eliminarmateria/{{row.id}}"
+              <a href="/client/micarrito/quitar/{{row.id}}"
                 class="btn btn-danger btn-delete btn-sm">Quitar</a>
             </td>
           </tr>
           {% endfor%}
         </tbody>
       </table>
-
+      <div>
+        <a href="{{url_for('client_router.pocesarPedido')}}" class="btn btn-primary">Procesar carrito</a>
+      </div>
     </div>
   </div>
 </div>
@@ -70,20 +72,25 @@
         <h5 class="modal-title" id="exampleModalLabel">Cantidad</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <div class="form-row">
-            <h1 class="col-sm-3 col-form-label">Cantidad</h1>
-            <input class="form-control col-sm-9" min="1" id="cantidad" type="number">
+      <form class="form-horizontal" method="POST" action="{{url_for('client_router.agregarCantidad')}}">
+        <div class="modal-body">
+          <input type="text" id="idped" name="id">
+          <div class="row">
+            <div class="form-row">
+              <label class="col-sm-3 col-form-label">Cantidad</label>
+              <input class="form-control col-sm-4" min="1" id="cantidad" name="cantidad" type="number">
+            </div>
           </div>
+          
+          
         </div>
-        
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </form>
+      
+      
     </div>
   </div>
 </div>
@@ -140,7 +147,23 @@
   });
 
   function agregarCantidad(id){
-    //alert(id);
+    //var cantidad = $('#cantidad').val();
+    $.ajax({
+        url: "/client/micarrito/getcarrito/"+id,
+        type: 'GET',
+        success: function (data) {
+          /* var json = $.parseJSON(
+              data); */ // create an object with the key of the array
+          $('#idped').val(id);
+          $('#cantidad').val(data);
+          //console.log('Todo salió bien');
+          //window.location.reload(true);
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          alert('error');
+        }
+      });
 
     $('#cantidadModal').modal('show');
 

@@ -14,6 +14,7 @@ class EstadisticaController():
         cpedido = Pedido.query.count()
         cproducto = Producto.query.count()
         cmensaje = Mensaje.query.count()
+        
         return render_template('index.html', cusuario=cusuario, cmensaje=cmensaje, cpedido=cpedido, cproducto=cproducto)
 
 
