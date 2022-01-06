@@ -45,6 +45,8 @@
             <td>{{data.rol_usuario}}</td>
 
             <td>
+              <a href="javascript:void(0)" onclick="cambiarRol('{{ data.id }}')"
+                class="btn btn-primary btn-sm">Actualizar</a>
               <a onclick="return confirm('Desea eliminar este Usuario?')"
                 href="{{url_for('usuario_route.eliminar', id = data.id)}}" class="btn btn-danger btn-sm ">Eliminar</a>
             </td>
@@ -64,9 +66,53 @@
 
     </div>
   </div>
-
-
 </section>
+
+<!-- modal -->
+<div class="modal fade" id="cambiarRolModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cambio de Rol de Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form class="form-horizontal" method="POST" action="{{url_for('usuario_route.cambiarRol')}}">
+        <div class="modal-body">
+          <input type="hidden" id="idusuario" name="id">
+          <div class="row">
+            <div class="form-check col-sm-6">
+              <input class="form-check-input" type="radio" name="evento" value="1">Cliente
+            </div>
+            
+            <div class="form-check col-sm-6">
+              <input class="form-check-input" type="radio" name="evento" value="2">Repartidor
+            </div>
+            <div class="form-check col-sm-6">
+              <input class="form-check-input" type="radio" name="evento" value="3">Cheff
+            </div>
+            <div class="form-check col-sm-6">
+              <input class="form-check-input" type="radio" name="evento" value="4">Operador
+            </div>
+            <div class="form-check col-sm-6">
+              <input class="form-check-input" type="radio" name="evento" value="5">Admin
+            </div>
+          </div>
+          <div class="form-row">
+            <input class="form-control col-sm-4" min="1" id="rol" name="rol" type="text" readonly>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+</div>
 
 {% endblock %}
 <!-- Fin bloque body -->
@@ -87,6 +133,23 @@
 <script>
   //alert("HOLA ESTE SON PRODUCTOS")
   $(document).ready(function () {
+
+    $('input:radio[name=evento]').change(function () {
+      if (this.value == '1') {
+        $('#rol').val('cliente');
+      } else if(this.value == '2') {
+        $('#rol').val('repartidor');
+      }
+      else if(this.value == '3') {
+        $('#rol').val('cheff');
+      }else if(this.value == '4') {
+        $('#rol').val('operador');
+      }else if(this.value == '5') {
+        $('#rol').val('admin');
+      }
+    });
+
+
     var table = $('#mytable').DataTable({
       rowReorder: {
         selector: 'td:nth-child(2)'
@@ -108,7 +171,24 @@
       },
     });
   });
+  ///Abrir modal
+  function cambiarRol(id) {
+    //var cantidad = $('#cantidad').val();
+    $.ajax({
+      url: "/usuario/obtenerusuario/" + id,
+      type: 'GET',
+      success: function (data) {
+        $('#idusuario').val(id);
+        $('#rol').val(data);
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        alert('error');
+      }
+    });
 
+    $('#cambiarRolModal').modal('show');
+
+  }
 
 </script>
 {% endblock %}
