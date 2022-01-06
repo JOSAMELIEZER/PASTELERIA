@@ -1,153 +1,145 @@
 {% extends 'layouts/app.html' %}
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Carousel Template · Bootstrap v5.0</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
-
-    
-
-    <!-- Bootstrap core CSS -->
-<link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-
-
 <!-- Inicio bloque body -->
 {% block body %}
-<!--{{user.name}}-->
 {% if current_user.is_authenticated %}
-<div class="my-5 py-4" >
-  <div class="main-section" >
+<div class="my-5 py-4">
+  <div class="main-section">
     <div class="dashbord">
-    <div class="icon-section">
-    <i class="fa fa-users" aria-hidden="true"></i><br>
-    <small>Usuarios</small>
-    <p><!--{{cusuario}}-->23</p>
-    </div>
-    <div class="detail-section">
-    <a href="/usuario">Ver Mas </a>
-    </div>
+      <div class="icon-section">
+        <i class="fa fa-users" aria-hidden="true"></i><br>
+        <small>Usuarios</small>
+        <p>
+          {{cusuario}}
+        </p>
+      </div>
+      <div class="detail-section">
+        <a href="/usuario">Ver Mas </a>
+      </div>
     </div>
     <div class="dashbord dashbord-green">
-    <div class="icon-section">
-    <i class="fa fa-money" aria-hidden="true"></i><br>
-    <small>Pedidos</small>
-    <p>256</p>
+      <div class="icon-section">
+        <i class="fa fa-money" aria-hidden="true"></i><br>
+        <small>Pedidos</small>
+        <p>{{cpedido}}</p>
+      </div>
+      <div class="detail-section">
+        <a href="/pedido">Ver Mas </a>
+      </div>
     </div>
-    <div class="detail-section">
-    <a href="/pedido">Ver Mas </a>
-    </div>
-    </div>
-     <div class="dashbord dashbord-orange">
-    <div class="icon-section">
-    <i class="fa fa-comment" aria-hidden="true"></i><br>
-    <small>Mensajes</small>
-    <p>256</p>
-    </div>
-    <div class="detail-section">
-    <a href="/mensaje">Ver Mas </a>
-    </div>
+    <div class="dashbord dashbord-orange">
+      <div class="icon-section">
+        <i class="fa fa-comment" aria-hidden="true"></i><br>
+        <small>Mensajes</small>
+        <p>{{cmensaje}}</p>
+      </div>
+      <div class="detail-section">
+        <a href="/mensaje">Ver Mas </a>
+      </div>
     </div>
     <div class="dashbord dashbord-blue">
-    <div class="icon-section">
-    <i class="fa fa-adjust" aria-hidden="true"></i><br>
-    <small>Tortas</small>
-    <p>256</p>
-    </div>
-    <div class="detail-section">
-    <a href="/producto">Ver Mas</a>
-    </div>
+      <div class="icon-section">
+        <i class="fa fa-adjust" aria-hidden="true"></i><br>
+        <small>Tortas</small>
+        <p>{{ctorta}}</p>
+      </div>
+      <div class="detail-section">
+        <a href="/producto">Ver Mas</a>
+      </div>
     </div>
     <div class="dashbord dashbord-red">
-    <div class="icon-section">
-    <i class="fa fa-coffee" aria-hidden="true"></i><br>
-    <small>Masitas</small>
-    <p>256</p>
-    </div>
-    <div class="detail-section">
-    <a href="/producto">Ver Mas</a>
-    </div>
+      <div class="icon-section">
+        <i class="fa fa-coffee" aria-hidden="true"></i><br>
+        <small>Masitas</small>
+        <p>256</p>
+      </div>
+      <div class="detail-section">
+        <a href="/producto">Ver Mas</a>
+      </div>
     </div>
     <div class="dashbord dashbord-skyblue">
-    <div class="icon-section">
-    <i class="fa fa-certificate" aria-hidden="true"></i><br>
-    <small>Panes</small>
-    <p>256</p>
+      <div class="icon-section">
+        <i class="fa fa-certificate" aria-hidden="true"></i><br>
+        <small>Panes</small>
+        <p>256</p>
+      </div>
+      <div class="detail-section">
+        <a href="/producto">Ver Mas </a>
+      </div>
     </div>
-    <div class="detail-section">
-    <a href="/producto">Ver Mas </a>
-    </div>
-    </div>
-    </div>
+  </div>
 </div>
 
 {% else %}
 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        
-        <img src="https://www.meet.barcelona/sites/default/files/2021-09/pastis-amb-crema-i-xocolata%20%282%29%20%281%29.jpg" alt=""  width="100%"  height="600px">
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>TORTAS</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="{{url_for('producto_route.torta')}}"">VER TORTAS</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://b2bgourmet.vteximg.com.br/arquivos/BannerDesktopEcommerce_Dulce.jpg" alt=""  width="100%"  height="600px">
-
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>MASITAS</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="{{url_for('producto_route.masita')}}">VER MASITAS</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        
-        <img src="https://media-exp1.licdn.com/dms/image/C4D1BAQE-AWg67P6Qfg/company-background_10000/0/1545050787363?e=2159024400&v=beta&t=eAHy-GD-D0UgL3pl65vVTDFnP2Z6kkoSBofZiQWI1MM" alt=""  width="100%"  height="600px">
-
-
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>PANES</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="{{url_for('producto_route.pan')}}">VER PANES</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+      aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
-  
+  <div class="carousel-inner">
+    <div class="carousel-item active">
 
-  {% endif %}  
+      <img
+        src="https://www.meet.barcelona/sites/default/files/2021-09/pastis-amb-crema-i-xocolata%20%282%29%20%281%29.jpg"
+        alt="" width="100%" height="600px">
+      <div class="container">
+        <div class="carousel-caption text-start">
+          <h1>TORTAS</h1>
+          <p>Some representative placeholder content for the first slide of the carousel.</p>
+          <p><a class="btn btn-lg btn-primary" href="{{url_for('producto_route.torta')}}">VER TORTAS</a></p>
+          </div>
+        </div>
+      </div>
+      <div class=" carousel-item">
+              <img src="https://b2bgourmet.vteximg.com.br/arquivos/BannerDesktopEcommerce_Dulce.jpg" alt="" width="100%"
+                height="600px">
+
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>MASITAS</h1>
+                  <p>Some representative placeholder content for the second slide of the carousel.</p>
+                  <p><a class="btn btn-lg btn-primary" href="{{url_for('producto_route.masita')}}">VER MASITAS</a></p>
+                </div>
+              </div>
+        </div>
+        <div class="carousel-item">
+
+          <img
+            src="https://media-exp1.licdn.com/dms/image/C4D1BAQE-AWg67P6Qfg/company-background_10000/0/1545050787363?e=2159024400&v=beta&t=eAHy-GD-D0UgL3pl65vVTDFnP2Z6kkoSBofZiQWI1MM"
+            alt="" width="100%" height="600px">
+
+
+          <div class="container">
+            <div class="carousel-caption text-end">
+              <h1>PANES</h1>
+              <p>Some representative placeholder content for the third slide of this carousel.</p>
+              <p><a class="btn btn-lg btn-primary" href="{{url_for('producto_route.pan')}}">VER PANES</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+{% endif %}
 
 {% endblock %}
 <!-- Fin bloque body -->
 
 {% block css%}
 <link rel="stylesheet" href="">
+<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
 {% endblock %}
 <!-- Fin bloque estilos -->
 
