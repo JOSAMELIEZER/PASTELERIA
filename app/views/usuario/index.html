@@ -6,7 +6,7 @@
 <section class="py-2 text-center container">
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
-      
+
       <h1 class="fw-light">USUARIOS</h1>
       <p class="lead text-muted">Inicio de Usuarios</p>
 
@@ -16,44 +16,55 @@
 
 <section class="container my-5">
   <div class="content">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Hey!</strong> {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 
-        <div class="container bg-light" > 
-          <table id="mytable" class="display nowrap table-light" style="width:100%">
-            <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Email</th>
-                  <th>Rol</th>
-                  <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-              {% for data in usuarios %}
-              <tr>
-                <td>{{data.nombre}}</td>
-                <td>{{data.email}}</td>
-                <td>{{data.rol_usuario}}</td>
-                
-              <td>
-                <a  class="btn btn-danger btn-sm">eliminar</a>
-              </td>
-              </tr>
-              {% endfor %} 
-            </tbody>
-            <tfoot>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Email</th>
-                  <th>Rol</th>
-                  <th>Acciones</th>
-                </tr>
-            </tfoot>
-        </table>
-        
-        
-        </div>
-        </div>
-  
+    {% endfor%}
+    {% endif %}
+    {% endwith%}
+    <div class="container bg-light">
+      <table id="mytable" class="display nowrap table-light" style="width:100%">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in usuarios %}
+          <tr>
+            <td>{{data.nombre}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.rol_usuario}}</td>
+
+            <td>
+              <a onclick="return confirm('Desea eliminar este Usuario?')"
+                href="{{url_for('usuario_route.eliminar', id = data.id)}}" class="btn btn-danger btn-sm ">Eliminar</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+          </tr>
+        </tfoot>
+      </table>
+
+
+    </div>
+  </div>
+
 
 </section>
 
@@ -74,14 +85,14 @@
 
 
 <script>
-    //alert("HOLA ESTE SON PRODUCTOS")
-$(document).ready(function() {
-    var table = $('#mytable').DataTable( {
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true,
-        "language": {
+  //alert("HOLA ESTE SON PRODUCTOS")
+  $(document).ready(function () {
+    var table = $('#mytable').DataTable({
+      rowReorder: {
+        selector: 'td:nth-child(2)'
+      },
+      responsive: true,
+      "language": {
         "lengthMenu": "Mostrar " +
           '<select class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="-1">All</option></select>' +
           " registros por página",
@@ -95,8 +106,8 @@ $(document).ready(function() {
           "previous": "Anterior"
         }
       },
-    } );
-} );
+    });
+  });
 
 
 </script>

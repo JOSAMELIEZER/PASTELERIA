@@ -52,7 +52,7 @@
                   <a href="{{url_for('producto_route.show', id = data.id)}}" class="btn btn-sm btn-outline-secondary">Ver</a>
                   <a href="{{url_for('producto_route.edit', id = data.id)}}" class="btn btn-dark btn-sm "><i
                       class="fa fa-edit"></i></a>
-                  <a href="{{url_for('producto_route.delete', id = data.id)}}" class="btn btn-danger btn-sm "><i
+                  <a onclick="return confirm('Desea eliminar este producto?')" href="{{url_for('producto_route.delete', id = data.id)}}" class="btn btn-danger btn-sm "><i
                       class="fa fa-trash"></i></a>
 
                 </div>
