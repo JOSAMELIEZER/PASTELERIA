@@ -24,6 +24,7 @@
                   <th>Nombre</th>
                   <th>Email</th>
                   <th>Rol</th>
+                  <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,10 @@
                 <td>{{data.nombre}}</td>
                 <td>{{data.email}}</td>
                 <td>{{data.rol_usuario}}</td>
+                
+              <td>
+                <a  class="btn btn-danger btn-sm">eliminar</a>
+              </td>
               </tr>
               {% endfor %} 
             </tbody>
@@ -40,6 +45,7 @@
                   <th>Nombre</th>
                   <th>Email</th>
                   <th>Rol</th>
+                  <th>Acciones</th>
                 </tr>
             </tfoot>
         </table>
