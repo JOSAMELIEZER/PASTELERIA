@@ -49,3 +49,6 @@ app.register_blueprint(contacto_router)
 #app.register_blueprint(pedido_router)
 from app.routes.pedido_router import pedido_router
 app.register_blueprint(pedido_router)
+
+from app.routes.factura_router import factura_router
+app.register_blueprint(factura_router)
