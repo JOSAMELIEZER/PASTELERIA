@@ -23,16 +23,16 @@
     <section class="py-2 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-          
+
           <h1 class="fw-light">PEDIDOS</h1>
           <p class="lead text-muted">lista de pedidos</p>
-    
+
         </div>
       </div>
     </section>
 
-    
-    <div class="card mt-3 " >
+
+    <div class="card mt-3 ">
       <div class="row">
 
         <table id="tblPedido" class="display" style="width:100%">
@@ -53,12 +53,34 @@
               <td>{{ row.cantidad }}</td>
               <td>{{ row.usuario.nombre }}</td>
               <td>{{ row.producto.nom_prod }}</td>
-              <th></th>
+              <th>
+                {% if row.estado == 1 %}
+                <span class="badge badge-success"> FAVORITO </span>
+                {% elif row.estado == 2 %}
+                <span class="badge badge-success text-success"> CARRITO </span>
+                {% elif row.estado == 3 %}
+                <span class="badge badge-success text-dark"> PENDIENTE </span>
+                {% elif row.estado == 4 %}
+                <span class="badge badge-success text-success"> ACEPTADO </span>
+                {% elif row.estado == 5 %}
+                <span class="badge badge-success text-danger"> RECHAZADO </span>
+                {% else %}
+                <span class="badge badge-success text-success"> NADA </span>
+                {% endif %}
+
+              </th>
               <td>
-                <a href="/materias/editar/{{row.id}}" class="btn btn-success btn-sm">Aceptar</a>
-                <a href="/materias/eliminarmateria/{{row.id}}" onclick="
-                              return confirm('¿Seguro que quiere eliminar este registro?')"
+                {% if row.estado == 3 %}
+                <a href="/pedido/aceptar/{{row.id}}" onclick="return confirm('¿Aceptar este pedido?')"
+                  class="btn btn-success btn-sm">Aceptar</a>
+                <a href="/pedido/rechazar/{{row.id}}" onclick="return confirm('¿Rechazar pedido?')"
                   class="btn btn-danger btn-delete btn-sm">Rechazar</a>
+                {% elif row.estado == 4 %}
+                <a href="/pedido/factura/{{row.id}}" class="btn btn-primary btn-sm">Factura</a>
+                {% else %}
+                  ------
+                {% endif %}
+
               </td>
             </tr>
             {% endfor%}

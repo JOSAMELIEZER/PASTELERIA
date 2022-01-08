@@ -13,7 +13,8 @@ class Pedido(db.Model):
     #Favoritos -> 1
     #Carrito -> 2
     #Pendiente -> 3
-    #Entregado -> 4
+    #Aceptado -> 4
+    #Rechazado -> 5
     estado = db.Column(db.Integer, default=0)
     subtotal = db.Column(db.Float())
     #relationship
