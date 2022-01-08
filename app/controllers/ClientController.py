@@ -34,8 +34,13 @@ class ClientController():
             cantidad = 1
             estado = 2
             prod_id = id
+            producto = Producto.query\
+            .filter(Producto.id == id)\
+            .first()
+
+            subtotal = cantidad * producto.precio
             
-            est_pedido = Pedido(cantidad=cantidad, estado=estado, prod_id=prod_id, user_id=user_id)
+            est_pedido = Pedido(cantidad=cantidad, subtotal=subtotal, estado=estado, prod_id=prod_id, user_id=user_id)
             db.session.add(est_pedido)
             db.session.commit()
             return jsonify(results=user_id)
@@ -47,7 +52,10 @@ class ClientController():
             .filter(Usuario.id == user_id)\
             .all()
             #.add_columns(Pedido.prod_id)\
-        return render_template('clients/micarrito.html', carrito=carrito)
+        total = db.session.query(db.func.sum(Pedido.subtotal))\
+            .filter(or_(Pedido.estado == 2, Pedido.estado == 3))\
+            .scalar()
+        return render_template('clients/micarrito.html', carrito=carrito, total=total)
     def quitar(self, _id):
         pedido =  Pedido.query.get(_id)   
         db.session.delete(pedido)
@@ -62,8 +70,9 @@ class ClientController():
             id = request.form['id']
             cantidad = request.form['cantidad']
 
-            pedido =  Pedido.query.get(id) 
+            pedido =  Pedido.query.get(id)
             pedido.cantidad = cantidad
+            pedido.subtotal = float(cantidad) * pedido.producto.precio
             db.session.commit()
             #flash('Cantidad agre.')
             return redirect(url_for('client_router.carrito'))

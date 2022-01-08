@@ -41,10 +41,10 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/client/micarrito">Mi Carrito</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/ordenes">Mis Favoritos</a>
-            </li>
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/client/favoritos">Mis Favoritos</a>
+            </li> -->
+            <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Ajustes
@@ -54,13 +54,13 @@
                 <li><a class="dropdown-item" href="#">Noticias</a></li>
                 <li><a class="dropdown-item" href="#">Portafolio</a></li>
               </ul>
-            </li>
+            </li> -->
 
           </ul>
-          <form class="d-flex">
+          <!-- <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
+          </form> -->
           <div class="btn-group px-2">
             <button type="button" class="btn dropdown-toggle text-light" data-bs-toggle="dropdown"
                 data-bs-display="static" aria-expanded="false">
@@ -69,7 +69,7 @@
             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-menu-lg-end">
                 <li><a class="dropdown-item" href="{{url_for('auth_router.logout')}}">Cerrar sessión</a></li>
                 <li><a class="dropdown-item" href="/setting">Ajustes</a></li>
-                <li><a class="dropdown-item" href="/profile">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
             </ul>
           </div>
           {% else %}

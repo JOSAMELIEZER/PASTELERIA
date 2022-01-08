@@ -7,7 +7,7 @@ from app.models.Factura import Factura
 class Pedido(db.Model):
     __tablename__="pedidos"
     id=db.Column(db.Integer, primary_key= True, autoincrement=True)
-    cantidad = db.Column(db.Integer)
+    cantidad = db.Column(db.Float())
     #ESTADOS
     #Nada -> 0
     #Favoritos -> 1
@@ -15,6 +15,7 @@ class Pedido(db.Model):
     #Pendiente -> 3
     #Entregado -> 4
     estado = db.Column(db.Integer, default=0)
+    subtotal = db.Column(db.Float())
     #relationship
     user_id = db.Column(db.Integer, db.ForeignKey('usuarios.id')) 
     #user = db.relationship("Usuario", back_populates="pedidos")

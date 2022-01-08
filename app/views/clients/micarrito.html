@@ -24,9 +24,10 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Cantidad</th>
-            <th>Cliente</th>
             <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unit.</th>
+            <th>Subtotal</th>
             <th>Estado</th>
             <th>Acciones</th>
           </tr>
@@ -35,9 +36,10 @@
           {% for row in carrito %}
           <tr>
             <td>{{ row.id }}</td>
-            <td>{{ row.cantidad }}</td>
-            <td>{{ row.usuario.nombre }}</td>
             <td>{{ row.producto.nom_prod }}</td>
+            <td>{{ row.cantidad }}</td>
+            <td>{{ row.producto.precio }}</td>
+            <td>{{ row.subtotal }}</td>
             <th>
               {% if row.estado == 1 %}
                 <span class="badge badge-success"> FAVORITO </span>
@@ -56,10 +58,19 @@
             </td>
           </tr>
           {% endfor%}
+          
+          
         </tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><b>TOTAL: </b></td>
+          <td> <b>{{ total }}</b> </td>
+        </tr>
       </table>
-      <div>
-        <a href="{{url_for('client_router.pocesarPedido')}}" class="btn btn-primary">Procesar carrito</a>
+      <div class="">
+        <a href="{{url_for('client_router.pocesarPedido')}}" class="btn btn-dark">Procesar carrito</a>
       </div>
     </div>
   </div>

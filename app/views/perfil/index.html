@@ -1,7 +1,12 @@
-{% extends 'layouts/app.html' %}
+{% if current_user.rol_usuario=="cliente" %}
+    {% extends 'layouts/appclient.html' %}
+{% else %}
+    {% extends 'layouts/app.html' %}
+{% endif %}
 
 <!-- Inicio bloque body -->
 {% block body %}
+
 <section class="py-5 text-center container">
   <div class="row py-lg-5">
     {% with messages = get_flashed_messages() %}
