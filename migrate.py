@@ -2,8 +2,9 @@
 from flask_sqlalchemy import model
 from app.models.Usuario import Usuario
 from app.models.Producto import Producto
-from app.models.Factura import Factura
 from app.models.Pedido import Pedido
+from app.models.Factura import Factura
+from app.models.DetalleFactura import DetalleFactura
 #from app.models.DetalleFactura import DetalleFactura
 
 

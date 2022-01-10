@@ -14,7 +14,9 @@ class MainController():
         cproducto = Producto.query.count()
         cmensaje = Mensaje.query.count()
         ctorta = Producto.query.filter(Producto.tipo=='torta').count()
-        return render_template('index.html', cusuario=cusuario, cmensaje=cmensaje, cpedido=cpedido, cproducto=cproducto, ctorta=ctorta)
+        cmasita = Producto.query.filter(Producto.tipo=='masita').count()
+        cpan = Producto.query.filter(Producto.tipo=='pan').count()
+        return render_template('index.html', cusuario=cusuario, cmensaje=cmensaje, cpedido=cpedido, cproducto=cproducto, ctorta=ctorta, cmasita=cmasita, cpan=cpan)
         
         #users = User.query.all()
         #return render_template('index.html', users=users)

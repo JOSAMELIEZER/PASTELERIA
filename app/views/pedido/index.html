@@ -76,7 +76,8 @@
                 <a href="/pedido/rechazar/{{row.id}}" onclick="return confirm('¿Rechazar pedido?')"
                   class="btn btn-danger btn-delete btn-sm">Rechazar</a>
                 {% elif row.estado == 4 %}
-                <a href="/pedido/factura/{{row.id}}" class="btn btn-primary btn-sm">Factura</a>
+                <a href="/factura/crear/{{row.id}}" onclick="return confirm('¿Emitir factura?')" 
+                  class="btn btn-primary btn-sm">Factura</a>
                 {% else %}
                   ------
                 {% endif %}

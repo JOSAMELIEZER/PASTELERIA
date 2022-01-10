@@ -8,3 +8,7 @@ factura_router = Blueprint('factura_router', __name__)
 @login_required
 def index():
     return facturacontroller.index()
+@factura_router.route('/factura/crear/<int:id>',methods=['GET'])
+@login_required
+def nuevaFactura(id):
+    return facturacontroller.nuevaFactura(id)
