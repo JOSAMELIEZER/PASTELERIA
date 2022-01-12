@@ -36,7 +36,7 @@ class FacturaController():
         flash('Factura creada satisfactoriamente.')
         return redirect(url_for('factura_router.index'))
     def detalleFactura(self, _id):
-        detalle = DetalleFactura.query.filter(factura_id = _id).all()
+        detalle = DetalleFactura.query.filter(DetalleFactura.factura_id == _id).all()
         factura = Factura.query.get(_id)
         return render_template('factura/detalle.html', factura=factura, detalle=detalle)
 

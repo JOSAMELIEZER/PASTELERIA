@@ -1,49 +1,171 @@
-<!DOCTYPE html>
-<html lang="es">
+
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Factura Pasteleria</title>
+<title>Impresión Factura Compra y Venta</title>
+<meta http-equiv="PRAGMA" content="NO-CACHE">
+<meta http-equiv="CACHE-CONTROL" content="NO-STORE">
+<style>
+    tbody {
+        font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif';
+        font-size: 8pt;
+    }
+
+    .tdLegend {
+        font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif';
+        font-size: 6pt;
+    }
+
+    .title {
+        font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif';
+        font-size: 10pt;
+        font-weight: bold;
+    }
+
+    .subtitle {
+        font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif';
+        font-size: 8pt;
+        font-weight: bold
+    }
+    .sizetab{
+        width: 800px;
+    }
+</style>
 </head>
 
 <body>
-  <main class="">
-      <div>
-        logo
-      </div>
-      <div>
-          <h3>FACTURA</h3>
-          
-      </div>
-      <div class="encabezado">
-          Nombre: Juan
-      </div>
-      <div class="detalle">
-        <table>
-            <thead>
-                <th>No</th>
-                <th>Descripción</th>
-                <th>Precio Unit</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-            </thead>
-            <tbody>
-                {% for row in detalle %}
-                <tr>
-                    <td>{{ row.id }}</td>
-                    <td>Pan</td>
-                    <td>123</td>
-                    <td>1</td>
-                    <td>123</td>
-                </tr>
-                {% endfor%}
-            </tbody>
-        </table>
-      </div>
+    <table class="sizetab">
+        <tbody>
+            <tr>
+                <td width="45%" align="center">
+                    <img src="https://lidia10kcom.files.wordpress.com/2019/06/pepita-chocolates-04.jpg" width="120" height="120"><br>
+                    <span><b>Pasteleria PEPITA</b></span><br>
+                    <span><b>CASA MATRIZ</b></span><br>
+                    No. Punto de Venta 1<br>
+                    Mercado “Roberto Yung” (zona Sudoeste)
+                    <br>
+                    Telefono: +591 72312333<br>
+                    Oruro
+                </td>
+                <td align="center">
+                </td>
+                <td width="30%">
+                    <table align="left">
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight:bold;">
+                                        <br>
+                                        NIT:<br>
+                                        FACTURA No: <br>
+                                        COD. AUTORIZACIÓN: <br><br><br>
+                                    </td>
+                                    <td>
+                                        <br>
+                                        76546764
+                                        <br> {{ factura.id }} <br>
+                                            2
+                                        <br><br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center">
+                    <b class="title">
+                        FACTURA
+                    </b>
+                    <br>
+                    <b class="subtitle">
+                        (Con Derecho a Crédito Fiscal)
+                    </b>
+                    <br><br>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="sizetab" style="line-height: 75%;">
+        <tbody>
+            <tr>
+                <td><b>Fecha: </b> </td>
+                <td width="65%">{{ factura.fecha }}</td>
+                <td style="text-align:right;"><b>NIT/CI/CEX: </b> </td>
+                
+                <td style="text-align:left;"><span>12</span>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Nombre/Razón Social: </b> </td>
+                <td style="text-align:left;"><span>Juan</span></td>
+                <td style="text-align:right;"><b>Cod Cliente: </b> </td>
+                <td style="text-align:left;"><span>1</span></td>
+            </tr>
+        </tbody>
+    </table>
 
-  </main>
+    <table class="sizetab" border="1" cellpadding="1" style="border-collapse: collapse;">
+        <thead>
+            <th align="center">No</th>
+            <th align="center">Descripción</th>
+            <th align="center">Precio Unit</th>
+            <th align="center">Cantidad</th>
+            <th align="center">Descuento</th>
+            <th align="center">Subtotal</th>
+        </thead>
+        <tbody>
+            {% for row in detalle %}
+            <tr>
+                <td style="vertical-align: top;" height="50" align="center">1</td>
+                <td style="vertical-align: top;" align="center">Pan</td>
+                <td style="vertical-align: top;" align="center">120</td>
+                <td style="vertical-align: top;" align="center">1</td>
+                <td style="vertical-align: top;" align="center">0</td>
+                <td style="vertical-align: top;" align="center">120</td>
+            </tr>
+            {% endfor%}
+            <tr>
+                <td colspan="4"><b>Son: </b>
+                    <span id="literal">CIENTO VEINTITRES 00/100 BOLIVIANOS</span>
+                </td>
+                <td colspan="2"
+                    align="right"><b>TOTAL Bs. </b>
+                </td>
+                <td align="right"><span
+                        id="number"> {{ factura.total }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                </td>
+                <td colspan="2"
+                    align="right"><b>IMPORTE BASE CRÉDITO FISCAL </b>
+                </td>
+                <td align="right"><span
+                        id="number"> 0 </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+
+    <table class="sizetab">
+        <tr>
+            <td width="75%" align="center" class="tdLegend">
+                ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAÍS, EL USO ILÍCITO SERÁ SANCIONADO PENALMENTE DE ACUERDO A
+                LEY
+                <br><br>
+                "Este documento es la Representación Gráfica de un Documento Fiscal Digital emitido fuera de línea,
+                    verifique su envío con su proveedor o en la página web www.impuestos.gob.bo"
+            </td>
+            <td width="25%" style="text-align: right;">
+                <img src="https://qrcode.tec-it.com/API/QRCode?data=smsto%3A555-555-5555%3AGenerador+de+C%C3%B3digos+QR+de+TEC-IT&method=download" alt="not found" width="100" height="100">
+            </td>
+        </tr>
+    </table>
+    
 
 </body>
-
 </html>
