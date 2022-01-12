@@ -47,7 +47,7 @@
             <th>Cliente</th>
             <td>{{ row.total }}</td>
             <td>
-              <a href="javascript:void(0)" onclick="detalleFactura('{{ row.id }}')" class="btn btn-primary btn-sm">Detalle</a>
+              <a href="/factura/detalle/{{row.id}}" class="btn btn-primary btn-sm">Detalle</a>
             </td>
           </tr>
           {% endfor%}
@@ -117,7 +117,7 @@
     
   });
 
-  function agregarCantidad(id){
+  function detalleFactura(id){
     //var cantidad = $('#cantidad').val();
     $.ajax({
         url: "/client/micarrito/getcarrito/"+id,

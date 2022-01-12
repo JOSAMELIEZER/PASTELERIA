@@ -12,3 +12,8 @@ def index():
 @login_required
 def nuevaFactura(id):
     return facturacontroller.nuevaFactura(id)
+
+@factura_router.route('/factura/detalle/<int:id>',methods=['GET'])
+@login_required
+def detalleFactura(id):
+    return facturacontroller.detalleFactura(id)
