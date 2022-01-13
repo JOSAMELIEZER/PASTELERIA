@@ -27,8 +27,8 @@
           <img src="{{ url_for('static', filename='img/' + data.picture_prod) }}" alt="" width="100%" height="225">
 
           <div class="card-body">
-            <h3>{{data.desc_prod}} <span class="text-primary">Bs. {{data.precio}}</span></h3>
-            <p class="card-text">{{data.nom_prod}}</p>
+            <h3>{{data.nom_prod}} <span class="text-primary">Bs. {{data.precio}}</span></h3>
+            <p class="card-text">{{data.desc_prod}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <button onclick="btnAgregarCarrito('{{data.id}}')" type="button" class="btn btn-sm btn-secondary"
