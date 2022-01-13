@@ -57,7 +57,7 @@
                                         <br>
                                         NIT:<br>
                                         FACTURA No: <br>
-                                        COD. AUTORIZACIÓN: <br><br><br>
+                                        COD. AUTORIZACIÓN: <br><br>
                                     </td>
                                     <td>
                                         <br>
@@ -118,26 +118,26 @@
             {% for row in detalle %}
             <tr>
                 <td style="vertical-align: top;" height="50" align="center">1</td>
-                <td style="vertical-align: top;" align="center">Pan</td>
-                <td style="vertical-align: top;" align="center">120</td>
-                <td style="vertical-align: top;" align="center">1</td>
+                <td style="vertical-align: top;" align="center">{{row.pedido.producto.nom_prod}}</td>
+                <td style="vertical-align: top;" align="center">{{row.pedido.producto.precio}}</td>
+                <td style="vertical-align: top;" align="center">{{row.cantidad}}</td>
                 <td style="vertical-align: top;" align="center">0</td>
-                <td style="vertical-align: top;" align="center">120</td>
+                <td style="vertical-align: top;" align="right">{{row.factura.total}}</td>
             </tr>
             {% endfor%}
             <tr>
-                <td colspan="4"><b>Son: </b>
+                <td colspan="3"><b>Son: </b>
                     <span id="literal">CIENTO VEINTITRES 00/100 BOLIVIANOS</span>
                 </td>
                 <td colspan="2"
-                    align="right"><b>TOTAL Bs. </b>
+                    align="right"><b>TOTAL Bs. {{factura.total}} </b>
                 </td>
                 <td align="right"><span
                         id="number"> {{ factura.total }}</span>
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="3">
                 </td>
                 <td colspan="2"
                     align="right"><b>IMPORTE BASE CRÉDITO FISCAL </b>

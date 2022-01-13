@@ -26,4 +26,5 @@ class Pedido(db.Model):
     
 
     #relationship
-    #factura = db.relationship("facturas",back_populates="facturas")
+    detalle_factura = db.relationship(
+        'DetalleFactura', backref='pedido', lazy='dynamic')

@@ -28,7 +28,7 @@ class FacturaController():
         #Registro en detalle
         factura_id = db.session.query(db.func.max(Pedido.id)).scalar()
         pedido_id = pedido.id
-        cantidad = 23
+        cantidad = pedido.cantidad
         det_factura = DetalleFactura(factura_id=factura_id,pedido_id=pedido_id, cantidad=cantidad)
         db.session.add(det_factura)
         db.session.commit()
